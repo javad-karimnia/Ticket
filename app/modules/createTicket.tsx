@@ -33,14 +33,14 @@ const CreateTicket = () => {
         if (!data) {
             toast.warning('لطفا اطلاعات را کامل وارد کنید')
         } else {
-            let i: any = 0;
+            let i: any = 1;
 
             const newTicket = {
                 id: i++,
                 ticket: data
             }
 
-            const res = await fetch(`${process.env.BASE_URL}/tickets`, {
+            const res = await fetch('http://localhost:4000/tickets', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
