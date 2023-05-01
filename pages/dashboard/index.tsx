@@ -13,7 +13,7 @@ export default Dashboard;
 export async function getStaticProps() {
 
     try {
-      const res = await fetch('http://localhost:4000/tickets');
+      const res = await fetch(`${process.env.BASE_URL}/tickets`);
       const ticket = await res.json();
   
       return {

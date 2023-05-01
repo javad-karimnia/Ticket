@@ -40,7 +40,7 @@ const CreateTicket = () => {
                 ticket: data
             }
 
-            const res = await fetch('http://localhost:4000/tickets', {
+            const res = await fetch(`${process.env.BASE_URL}/tickets`, {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -53,6 +53,7 @@ const CreateTicket = () => {
                 router.push('/dashboard')
                 toast.success('تیکت شما با موفقیت ثبت شد')
             }
+
         }
 
 

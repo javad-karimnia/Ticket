@@ -7,8 +7,6 @@ import CreateTicket from "../modules/createTicket";
 
 
 const DashboardPage = ({ Ticket }: { Ticket:any }) => {
-
-    console.log(Ticket);
     
     const router = useRouter();
     const { auth } = useContext(Auth)
@@ -68,7 +66,7 @@ const DashboardPage = ({ Ticket }: { Ticket:any }) => {
                     
                       {  
                         
-                        Ticket.ticket.length ?  <ShowTicket props={Ticket} /> : <CreateTicket />
+                        Ticket?.ticket?.length ?  <ShowTicket props={Ticket} /> : <CreateTicket />
                       
                       }
                     

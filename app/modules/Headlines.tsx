@@ -95,8 +95,6 @@ const Headlines = ({ productDetails }: { productDetails: IData }) => {
 
     useEffect(() => {
 
-        console.log(Parents.current.children[0]);
-
         Parents.current.children[0].children[0].onclick = showHandlers
 
     }, [Parents])
