@@ -1,20 +1,20 @@
 import { IData } from "@/typescript/interface";
 import Image from "next/image";
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useRef } from "react";
 
 const Child = forwardRef((props: any, ref) => {
 
-    const Parents: any = useRef(null);
+    const Title: any = useRef(null);
+    const Pic: any = useRef(null);
+    const boxInfoCourse: any = useRef(null);
 
     const dropHandlers = () => {
-        const Title = Parents.current.children[0].children[0];
-        const boxInfoCourse = Parents.current.children[1];
-        const Pic = Parents.current.children[0].children[1].children[0];
-        const titleCurrent: string = Parents.current.children[0].children[0].className;
+
+        const titleCurrent: string = Title.current.className;
 
         const Current = (Name: any, Class: any) => {
-            Name.className = Class;
-            Name.style.transition = "all 0.5s";
+            Name.current.className = Class;
+            Name.current.style.transition = "all 0.5s";
         };
 
 
@@ -32,9 +32,9 @@ const Child = forwardRef((props: any, ref) => {
 
     return (
 
-        <div ref={Parents} className=" bg-white mb-4 rounded-[10px] shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)]">
+        <div className=" bg-white mb-4 rounded-[10px] shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)]">
             <div onClick={dropHandlers} className="py-[5px] px-5 shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)] rounded-[10px] flex justify-center items-center cursor-pointer">
-                <div className="w-3/4 flex my-3">
+                <div ref={Title} className="w-3/4 flex my-3">
                     <p className="text-[#6e6e6e]">
                         فصل اول
                         :
@@ -44,11 +44,11 @@ const Child = forwardRef((props: any, ref) => {
                     </p>
                 </div>
                 <div className="w-1/4 flex justify-end">
-                    <Image src="/assets/img/ArrowHeadlines.png" alt="ArrowHeadlines" width={1000} height={1000} className="w-4 object-contain rotate-180" />
+                    <Image ref={Pic} src="/assets/img/ArrowHeadlines.png" alt="ArrowHeadlines" width={1000} height={1000} className="w-4 object-contain rotate-180" />
                 </div>
             </div>
 
-            <div className="overflow-hidden min-h-0 h-0">
+            <div ref={boxInfoCourse} className="overflow-hidden min-h-0 h-0">
                 <div className="p-5">
                     <div className="my-4 px-3 flex justify-center items-center bg-[#f5f5f5] rounded-[5px] border border-[#c0c0c0] text-[#626262] text-xs">
                         <div className="w-[3%] my-2">
@@ -96,7 +96,6 @@ const Child = forwardRef((props: any, ref) => {
 const Headlines = ({ productDetails }: { productDetails: IData }) => {
 
 
-    const main: any = useRef(null);
 
     return (
         <div className="max-w-screen-2xl m-auto mt-28 flex justify-center">
@@ -109,17 +108,17 @@ const Headlines = ({ productDetails }: { productDetails: IData }) => {
                 </div>
                 <div>
 
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
-                    <Child ref={main} />
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
+                    <Child/>
 
 
                 </div>
