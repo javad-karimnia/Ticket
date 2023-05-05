@@ -22,3 +22,11 @@ ul li::marker {
     color: #212121;
     font-size: 1.5em;
 }
+/* .Test>P::-moz-selection {
+    background-color: #889966;
+    color: #FFF;
+}
+.Test>P::selection {
+    background-color: #889966;
+    color: #FFF;
+} */

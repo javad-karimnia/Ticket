@@ -1,23 +1,54 @@
 import { IData } from "@/typescript/interface";
 import Image from "next/image";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 
-const Child = forwardRef((props, ref) => {
-    const { boxInfoCourse, Pic, Title }: any = ref;
+const Child = forwardRef((props: any, ref) => {
+
+    const Parents: any = useRef(null);
+
+    const dropHandlers = () => {
+        const Title = Parents.current.children[0].children[0];
+        const boxInfoCourse = Parents.current.children[1];
+        const Pic = Parents.current.children[0].children[1].children[0];
+        const titleCurrent: string = Parents.current.children[0].children[0].className;
+
+        const Current = (Name: any, Class: any) => {
+            Name.className = Class;
+            Name.style.transition = "all 0.5s";
+        };
+
+
+
+        if (titleCurrent === "w-3/4 flex my-3") {
+            Current(Title, "w-3/4 flex my-5")
+            Current(boxInfoCourse, "min-h-[64px] h-auto")
+            Current(Pic, "w-4 object-contain rotate-0")
+        } else {
+            Current(Title, "w-3/4 flex my-3")
+            Current(boxInfoCourse, "overflow-hidden min-h-0 h-0")
+            Current(Pic, "w-4 object-contain rotate-180")
+        }
+    };
 
     return (
-        <div className=" bg-white mb-4 rounded-[10px] shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)]">
-            <div className="py-[5px] px-5 shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)] rounded-[10px] flex justify-center items-center cursor-pointer">
-                <div ref={Title} className="w-3/4 flex my-3">
-                    <p>فصل دوم:</p>
-                    <p>معرفی دوره</p>
+
+        <div ref={Parents} className=" bg-white mb-4 rounded-[10px] shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)]">
+            <div onClick={dropHandlers} className="py-[5px] px-5 shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)] rounded-[10px] flex justify-center items-center cursor-pointer">
+                <div className="w-3/4 flex my-3">
+                    <p className="text-[#6e6e6e]">
+                        فصل اول
+                        :
+                    </p>
+                    <p className="text-[#212121]">
+                        معرفی دوره
+                    </p>
                 </div>
                 <div className="w-1/4 flex justify-end">
-                    <Image ref={Pic} src="/assets/img/ArrowHeadlines.png" alt="ArrowHeadlines" width={1000} height={1000} className="w-4 object-contain rotate-180" />
+                    <Image src="/assets/img/ArrowHeadlines.png" alt="ArrowHeadlines" width={1000} height={1000} className="w-4 object-contain rotate-180" />
                 </div>
             </div>
 
-            <div ref={boxInfoCourse} className="overflow-hidden min-h-0 h-0">
+            <div className="overflow-hidden min-h-0 h-0">
                 <div className="p-5">
                     <div className="my-4 px-3 flex justify-center items-center bg-[#f5f5f5] rounded-[5px] border border-[#c0c0c0] text-[#626262] text-xs">
                         <div className="w-[3%] my-2">
@@ -59,46 +90,13 @@ const Child = forwardRef((props, ref) => {
             </div>
         </div>
     )
-
-})
+});
 
 
 const Headlines = ({ productDetails }: { productDetails: IData }) => {
 
 
-    const Parents: any = useRef(null);
-
-    const boxInfoCourse: any = useRef(null);
-    const Pic: any = useRef(null);
-    const Title: any = useRef(null);
-
-    const showHandlers = () => {
-
-        const Current = (Name: any, Class: any) => {
-            Name.current.className = Class;
-            Name.current.style.transition = "all 0.5s";
-        };
-
-        const titleCurrent: string = Title.current.className
-
-        if (titleCurrent === "w-3/4 flex my-3") {
-            Current(Title, "w-3/4 flex my-5")
-            Current(boxInfoCourse, "min-h-[64px] h-auto")
-            Current(Pic, "w-4 object-contain rotate-0")
-        } else {
-            Current(Title, "w-3/4 flex my-3")
-            Current(boxInfoCourse, "overflow-hidden min-h-0 h-0")
-            Current(Pic, "w-4 object-contain rotate-180")
-        }
-
-    }
-
-    useEffect(() => {
-
-        Parents.current.children[0].children[0].onclick = showHandlers
-
-    }, [Parents])
-
+    const main: any = useRef(null);
 
     return (
         <div className="max-w-screen-2xl m-auto mt-28 flex justify-center">
@@ -109,11 +107,21 @@ const Headlines = ({ productDetails }: { productDetails: IData }) => {
                         سرفصل ها
                     </h2>
                 </div>
-                <div ref={Parents}>
+                <div>
 
-                    <Child ref={{boxInfoCourse, Pic, Title }} />
-                    <Child ref={{boxInfoCourse, Pic, Title }} />
-                    
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+                    <Child ref={main} />
+
+
                 </div>
             </div>
         </div>
